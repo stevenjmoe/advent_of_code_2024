@@ -1,0 +1,13 @@
+profile=janestreet
+margin=80
+
+leading-nested-match-parens = false
+space-around-arrays = true
+space-around-lists = true
+space-around-records = true
+break-infix = fit-or-vertical
+break-cases = fit-or-vertical
+exp-grouping = preserve
+if-then-else = fit-or-vertical
+let-and = sparse
+type-decl = sparse
