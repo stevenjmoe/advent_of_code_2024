@@ -10,9 +10,11 @@
   ()
   ;;*)
 
-let day3 =
-  Printf.printf "Day 2 Prolem 1: %d\n" Advent_of_code_2024.Day3.solution1;
+(*let day3 =
+  (*Printf.printf "Day 3 Prolem 1: %d\n" Advent_of_code_2024.Day3.solution1;*)
+  Advent_of_code_2024.Day3.solution2;
   ()
-;;
+  ;;*)
 
-let () = day3
+let day4 = Advent_of_code_2024.Day4.solution1
+let () = day4
