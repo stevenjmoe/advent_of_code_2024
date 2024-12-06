@@ -39,27 +39,28 @@ let validate_updates update rules =
   let valid =
     update
     |> List.fold_left
-         (fun (acc : int list option) (page_number : int) ->
+         (fun (acc : int list * bool) (page_number : int) ->
            match acc with
-           | Some [] -> Some (page_number :: [])
-           | Some (prev :: rest) ->
+           | [], _ -> page_number :: [], true
+           | prev :: rest, valid ->
              let page_rules = Hashtbl.find_all rules page_number in
              (* if the previous page number is found, the current page number violates the rules *)
              let rule_violoated =
                page_rules |> List.exists (fun p -> p = prev)
              in
              if rule_violoated then
-               None
+               page_number :: prev :: rest, false
              else
-               Some (page_number :: prev :: rest)
-           | None -> acc)
-         (Some [])
+               page_number :: prev :: rest, valid)
+         ([], true)
   in
   valid
 ;;
 
 (** Filters out the invalid updates *)
-let get_valid_updates updates = updates |> List.filter_map (fun v -> v)
+let get_valid_updates updates =
+  updates |> List.filter (fun (_, is_valid) -> is_valid)
+;;
 
 let get_middle_page update =
   let l = List.length update in
@@ -77,7 +78,7 @@ let solution1 =
        []
   |> get_valid_updates
   |> List.fold_left
-       (fun acc u ->
+       (fun acc (u, _) ->
          let middle_page = get_middle_page u in
          middle_page + acc)
        0
