@@ -16,5 +16,9 @@
   ()
   ;;*)
 
-let day4 = Advent_of_code_2024.Day4.solution1
-let () = day4
+let day5 = Advent_of_code_2024.Day5.solution1
+
+let () =
+  Printf.printf "Day 5 problem 1: %d\n" day5;
+  ()
+;;
